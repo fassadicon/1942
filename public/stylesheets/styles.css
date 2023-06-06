@@ -1,0 +1,89 @@
+body{
+    background-color:black;
+}
+#container{
+    background: url('/images/background.jpg');
+    width:1000px;
+    height:550px;
+}
+.hero{
+    background: url('/images/1942.gif');
+    background-position: -85px -180px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+/* Enemies */
+.enemy1{
+    background: url('/images/1942.gif');
+    background-position: -30px -10px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.enemy2{
+    background: url('/images/1942.gif');
+    background-position: -6px -10px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.enemy3{
+    background: url('/images/1942.gif');
+    background-position: -60px -10px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.enemy4{
+    background: url('/images/1942.gif');
+    background-position: -89px -6px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.enemy5{
+    background: url('/images/1942.gif');
+    background-position: -120px -6px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.enemy6{
+    background: url('/images/1942.gif');
+    background-position: -150px -6px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.enemy7{
+    background: url('/images/1942.gif');
+    background-position: -180px -10px;
+    width:28px;
+    height:28px;
+    position:absolute;
+}
+.bullet{
+    background: url('/images/1942.gif');
+    background-position: -185px -400px;
+    width:18px;
+    height:18px;
+    position:absolute;
+}
+.explosion {
+    background: url('/images/1942.gif');
+    background-position: -85px -40px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+#score{
+    position:absolute;
+    border:10px solid red;
+    top:20px;
+    left:800px;
+    background-color:white;
+    padding:10px;
+    font-size:30px;
+    font-family: Arial;	
+}

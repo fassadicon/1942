@@ -1,0 +1,171 @@
+<html>
+<head>
+	<title>1942 Game</title>
+
+<style type="text/css">
+	body{
+		background-color:black;
+	}
+	#container{
+		background: url('background.jpg');
+		width:1000px;
+		height:550px;
+	}
+	#hero{
+		background: url('1942.gif');
+		background-position: -85px -180px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.enemy1{
+		background: url('1942.gif');
+		background-position: -30px -10px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.bullet{
+		background: url('1942.gif');
+		background-position: -185px -400px;
+		width:18px;
+		height:18px;
+		position:absolute;
+	}
+	#score{
+		position:absolute;
+		border:10px solid red;
+		top:20px;
+		left:800px;
+		background-color:white;
+		padding:10px;
+		font-size:30px;
+		font-family: Arial;	
+	}
+</style>
+</head>
+<body>
+	<div id='container'>
+		<div id='hero'></div>
+		<div id='enemies'>
+			<!-- <div class='enemy1' style='top:100px; left:100px;'></div>
+			<div class='enemy1' style='top:100px; left:200px;'></div>
+			<div class='enemy1' style='top:100px; left:300px;'></div>
+			<div class='enemy1' style='top:100px; left:400px;'></div> -->
+		</div>
+		<div id='bullets'>
+			<!-- <div class='bullet' style='top:150px; left:200px;'></div>
+			<div class='bullet' style='top:250px; left:200px;'></div>
+			<div class='bullet' style='top:350px; left:200px;'></div>
+			<div class='bullet' style='top:450px; left:200px;'></div> -->
+		</div>	
+	</div>
+
+	<div id='score'>100</div>
+
+	<!-- 1. Display the hero -->
+	<!-- 2. Make the Hero move -->
+	<!-- 3. Display all the enemies -->
+	<!-- 4. Make the enemis move -->
+	<!-- 5. When spacebar is press, have the hero shoot a bullet -->
+
+
+<script>
+	var hero = {
+		x: 300,
+		y: 300
+	}
+
+	var enemies = [
+		{x: 50, y: 50},
+		{x: 150, y: 50},
+		{x: 250, y: 50},
+		{x: 350, y: 50}
+	];
+
+	var bullets = [];
+
+
+	function displayHero() {
+		document.getElementById('hero').style['top'] = `${hero.y}px`;
+		document.getElementById('hero').style['left'] = `${hero.x}px`;
+	}
+
+	function displayEnemies() {
+		var output = "";
+		for (enemy of enemies) {
+			output += `<div class='enemy1' style='top:${enemy.y}px; left:${enemy.x}px;'></div>`;
+		}
+
+		document.getElementById('enemies').innerHTML = output;
+	}
+
+	function moveBullets () {
+		for (var i in bullets) {
+			bullets[i].y -= 5;
+			if (bullets[i].y < 0) {
+				bullets[i] = bullets[bullets.length-1];
+				bullets.pop();
+			}
+		}
+	}
+
+	function moveEnemies() {
+		for (enemy of enemies) {
+			enemy.y += 5;
+			if (enemy.y > 520) {
+				enemy.y = 0;
+				enemy.x = Math.floor(Math.random() * 500);
+			}
+		}
+	}
+
+	function displayBullets() {
+		var output = "";
+		for (bullet of bullets) {
+			output += `<div class='bullet' style='top:${bullet.y}px; left:${bullet.x}px;'></div>`;
+		}
+		document.getElementById('bullets').innerHTML = output;
+	}
+
+	function gameLoop() {
+		displayHero();
+		moveEnemies();
+		displayEnemies();
+		displayBullets();
+		moveBullets();
+	}
+
+	setInterval(gameLoop, 50);
+
+	document.onkeydown = function(e) {
+		// keyup 38
+		if (e.keyCode == 38) {
+			hero.y -= 10;
+		} 
+		// keydown 40
+		else if (e.keyCode == 40) {
+			hero.y += 10;
+		} 
+		// key right 39
+		else if (e.keyCode == 39) {
+			hero.x += 10;
+		} 
+		// key left 37
+		else if (e.keyCode == 37) {
+			hero.x -= 10;
+		} 
+		// bullet space trigger
+		else if (e.keyCode == 32) {
+			bullets.push({x: hero.x+5, y: hero.y-15});
+			displayBullets();
+		}
+		displayHero();
+	}
+
+
+
+</script>
+
+</body>
+</html>
